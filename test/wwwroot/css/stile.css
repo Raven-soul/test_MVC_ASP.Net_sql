@@ -1,0 +1,106 @@
+body {
+    background-color: azure;
+}
+
+.control-panel {
+    border-right: 2px solid rebeccapurple;
+}
+
+.main {
+    margin-top: 20px;
+}
+
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+ul {
+    list-style:none;
+    height: 100px;
+    overflow:hidden;
+    overflow-y:scroll;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+.db-container {
+    background-color: rgb(241, 241, 241);
+    margin-bottom: 10px;
+}
+
+.buttons-row {
+    justify-content: right;
+}
+
+.main-button {
+    color: black;
+    text-decoration: none;
+}
+
+.main-button:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.main-button-data {
+    width: 100%;
+    padding: 3px;
+    padding-left: 10px;
+    border-top: 1px solid rebeccapurple;
+}
+
+.main-button-data:hover {
+    background-color: rgb(208, 204, 202);
+}
+
+.choosen div {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+.choosen div:hover {
+    background-color: rebeccapurple;
+}
+
+.db-item {
+    color: black;
+    text-decoration: none;
+}
+
+.db-item:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.db-item-data {
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.db-item-data:hover {
+    background-color: blueviolet;
+}
+
+.submit-button {
+    background-color: blueviolet;
+    color: white;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    border: none;
+}
+
+.submit-button:active, .submit-button:focus {
+    border: none;
+}
+
+.title-div {
+    margin-bottom: 10px;
+}

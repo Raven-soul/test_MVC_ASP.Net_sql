@@ -9,23 +9,24 @@ namespace test.Controllers
 {
     public class Reader
     {
+        string dbPathString = "";
+
         public Reader()
         {
-            using (SqliteConnection connection = new SqliteConnection("Data Source=db_file.sqlite3"))
+            dbPathString = "Data Source=SQL/db_file.sqlite3";
+        }
+
+        public void Check()
+        {
+            using (SqliteConnection connection = new SqliteConnection(dbPathString))
             {
                 connection.Open();
 
                 using (var transaction = connection.BeginTransaction())
                 {
-                    //    //var insertCommand = connection.CreateCommand();
-                    //    //insertCommand.Transaction = transaction;
-                    //    //insertCommand.CommandText = "INSERT INTO message ( text ) VALUES ( $text )";
-                    //    //insertCommand.Parameters.AddWithValue("$text", "Hello, World!");
-                    //    //insertCommand.ExecuteNonQuery();
-
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Books";
+                    selectCommand.CommandText = "SELECT * FROM Book";
 
                     string[] mystrings = new string[3];
                     int k = 0;
@@ -34,10 +35,10 @@ namespace test.Controllers
                     {
                         while (reader.Read())
                         {
-                            var message = reader.GetString(0);
+                            var message = reader.GetString(1);
                             Console.WriteLine(message);
 
-                            mystrings[k] = reader.GetString(0);
+                            mystrings[k] = reader.GetString(1);
                             k = k + 1;
                         }
                     }
