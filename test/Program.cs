@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using test.Controllers;
 
 namespace test
 {
@@ -13,6 +14,7 @@ namespace test
     {
         public static void Main(string[] args)
         {
+            var data = new Reader();
             CreateHostBuilder(args).Build().Run();
         }
 
