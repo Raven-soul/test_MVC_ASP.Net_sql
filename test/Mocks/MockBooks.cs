@@ -10,22 +10,36 @@ namespace test.Mocks {
     public class MockBooks : IBooks {
         public IEnumerable<Book> AllBooks {
             get {
-                List<Book> Books = null;
-                var dbReader = new Reader();
-                var list = dbReader.DbGetAllBooks();
-                for (int i = 0; i < list.GetLength(0); i++) { 
-                    Books.Add(new Book{
-                        id = int.Parse(list[i, 0]),
-                        bookName = list[i, 1],
-                        description = list[i, 1],
-                    })
+                List<Book> BookList = null;
+                var db = new DataBase();
+                var dict = db.DbGetAllBooks();
+                foreach (var item in dict) {
+                    BookList.Add(new Book
+                    {
+                        id = item.Key,
+                        bookName = item.Value[0],
+                        description = item.Value[1],
+                        orders = dbReader.DbGetBookOrders(item.Key)
+                    });
                 }
-                return 
+                return BookList;
             }
         }
 
-        public Book getBook => throw new NotImplementedException();
+        public void addBook(string bookName, string description)
+        {
+            var dbReader = new Reader();
+            dbReader.DbAddBook(bookName, description);
+        }
 
-        public Book editBook { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public void editBook(int bookId, string description)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Book getBook(int bookId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

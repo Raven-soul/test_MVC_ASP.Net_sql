@@ -7,7 +7,8 @@ using test.Models;
 namespace test.Interfaces {
     interface IBooks {
         IEnumerable<Book> AllBooks { get; }
-        Book getBook { get; }
-        Book editBook { get; set; }
+        Book getBook(int bookId);
+        void editBook(int bookId, string description);
+        void addBook(string bookName, string description);
     }
 }
