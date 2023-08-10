@@ -55,8 +55,8 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Book WHERE id = '$bookId’;";
-                    selectCommand.Parameters.AddWithValue("$bookName", bookId);
+                    selectCommand.CommandText = "SELECT * FROM Book WHERE id = '$bookId’";
+                    selectCommand.Parameters.AddWithValue("$bookId", bookId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
                     {
@@ -86,8 +86,8 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Order WHERE bookid = '$bookId’;";
-                    selectCommand.Parameters.AddWithValue("$bookName", bookId);
+                    selectCommand.CommandText = "SELECT * FROM Order WHERE bookid = '$bookId’";
+                    selectCommand.Parameters.AddWithValue("$bookId", bookId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
                     {
@@ -143,12 +143,12 @@ namespace test.SQL {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())
                 {
-                    var insertCommand = connection.CreateCommand();
-                    insertCommand.Transaction = transaction;
-                    insertCommand.CommandText = "UPDATE Book SET description = $description WHERE id = $bookId; ";
-                    insertCommand.Parameters.AddWithValue("$bookId", bookId);
-                    insertCommand.Parameters.AddWithValue("$description", description);
-                    insertCommand.ExecuteNonQuery();
+                    var updateCommand = connection.CreateCommand();
+                    updateCommand.Transaction = transaction;
+                    updateCommand.CommandText = "UPDATE Book SET description = $description WHERE id = $bookId";
+                    updateCommand.Parameters.AddWithValue("$bookId", bookId);
+                    updateCommand.Parameters.AddWithValue("$description", description);
+                    updateCommand.ExecuteNonQuery();
                     transaction.Commit();
                 }
             }
