@@ -14,7 +14,6 @@ namespace test
     {
         public static void Main(string[] args)
         {
-            var data = new Reader();
             CreateHostBuilder(args).Build().Run();
         }
 

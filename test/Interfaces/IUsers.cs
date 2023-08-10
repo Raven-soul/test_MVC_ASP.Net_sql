@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using test.Models;
 
 namespace test.Interfaces {
-    interface IUsers {
+    public interface IUsers {
         IEnumerable<User> AllUsers { get; }
         User getUser(int userId);
         IEnumerable<Book> getTakenBooks(int userId);

@@ -1,0 +1,37 @@
+﻿@using test.Models
+@using System.Text
+
+@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form action="#" method="post">
+    <div class="row-2">
+        <div class="col db-container">
+            <ul>
+                @{ 
+                    foreach (var book in Model) { 
+                        <li>
+                            <a href="#" class="db-item">
+                                <div class="col db-item-data">
+                                     @book.bookName
+                                </div>
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="col">
+            <div class="row buttons-row">
+                <div class="col-auto">
+                    <button type="submit" class="submit-button">
+                        Добавить книгу
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

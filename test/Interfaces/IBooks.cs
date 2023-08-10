@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using test.Models;
 
 namespace test.Interfaces {
-    interface IBooks {
+    public interface IBooks {
         IEnumerable<Book> AllBooks { get; }
         Book getBook(int bookId);
         void editBook(int bookId, string description);
