@@ -10,36 +10,49 @@ namespace test.Mocks {
     public class MockBooks : IBooks {
         public IEnumerable<Book> AllBooks {
             get {
-                List<Book> BookList = null;
+                List<Book> BookList = new List<Book>();
                 var db = new DataBase();
-                var dict = db.DbGetAllBooks();
+                var dict = db.bookData.GetAll();
                 foreach (var item in dict) {
                     BookList.Add(new Book
                     {
-                        id = item.Key,
-                        bookName = item.Value[0],
-                        description = item.Value[1],
-                        orders = dbReader.DbGetBookOrders(item.Key)
+                        id = int.Parse(item["id"]),
+                        bookName = item["name"],
+                        description = item["description"],
+                        orders = db.bookData.GetOrdersByOne(int.Parse(item["id"]))
                     });
                 }
                 return BookList;
             }
         }
 
-        public void addBook(string bookName, string description)
-        {
-            var dbReader = new Reader();
-            dbReader.DbAddBook(bookName, description);
+        public void addBook(string bookName, string description) {
+            var db = new DataBase();
+            db.bookData.SetOne(bookName, description);
         }
 
-        public void editBook(int bookId, string description)
-        {
-            throw new NotImplementedException();
+        public void editBook(int bookId, string description) {
+            var db = new DataBase();
+            db.bookData.EditOne(bookId, description);
         }
 
-        public Book getBook(int bookId)
-        {
-            throw new NotImplementedException();
+        public Book getBook(int bookId) {
+            var db = new DataBase();
+            Dictionary<string, string> bookItem = new Dictionary<string, string>();
+            if ((bookItem = db.bookData.GetOne(bookId)) != null) {
+                Book book = new Book
+                {
+                    id = int.Parse(bookItem["id"]),
+                    bookName = bookItem["name"],
+                    description = bookItem["description"],
+                    orders = db.bookData.GetOrdersByOne(int.Parse(bookItem["id"]))
+                };
+
+                return book;
+            }
+            else { 
+                return new Book();
+            }
         }
     }
 }
