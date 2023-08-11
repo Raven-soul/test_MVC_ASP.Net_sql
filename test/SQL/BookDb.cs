@@ -73,49 +73,6 @@ namespace test.SQL {
             return result;
         }
 
-        // Получить все записи на выдачу данной книги
-        public List<Order> GetOrdersByOne(int bookId)
-        {
-            List<Dictionary<string, string>> searchResult = new List<Dictionary<string, string>>();
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-
-            using (SqliteConnection connection = new SqliteConnection(dbPathString))
-            {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    var selectCommand = connection.CreateCommand();
-                    selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Order WHERE bookid = $bookId";
-                    selectCommand.Parameters.AddWithValue("$bookId", bookId);
-
-                    using (var dataBaseReader = selectCommand.ExecuteReader())
-                    {
-                        while (dataBaseReader.Read())
-                        {
-                            dict.Add("id", dataBaseReader.GetString(0));
-                            dict.Add("bookId", dataBaseReader.GetString(1));
-                            dict.Add("userId", dataBaseReader.GetString(2));
-                            searchResult.Add(dict);
-                        }
-                    }
-                    transaction.Commit();
-                }
-            }
-            List<Order> result = new List<Order>();
-            foreach (var dictItem in searchResult)
-            {
-                result.Add(new Order
-                {
-                    id = int.Parse(dictItem["id"]),
-                    bookId = int.Parse(dictItem["bookId"]),
-                    userId = int.Parse(dictItem["userId"])
-                });
-            }
-
-            return result;
-        }
-
         // Добавить в базу новую книгу
         public void SetOne(string bookName, string description)
         {

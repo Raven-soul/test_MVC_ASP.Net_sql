@@ -8,6 +8,5 @@ namespace test.Models{
         public int id { get; set; }
         public string bookName { get; set; }
         public string description { get; set; } 
-        public List<Order> orders { get; set; }
     }
 }

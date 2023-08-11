@@ -16,8 +16,7 @@ namespace test.Mocks {
                 foreach (var item in dict) {
                     UserList.Add(new User {
                         id = int.Parse(item["id"]),
-                        userName = item["name"],
-                        orders = db.userData.GetOrdersByOne(int.Parse(item["id"]))
+                        userName = item["name"]
                     });
                 }
                 return UserList;
@@ -30,8 +29,7 @@ namespace test.Mocks {
             if ((userItem = db.userData.GetOne(userId)) != null) {
                 User user = new User {
                     id = int.Parse(userItem["id"]),
-                    userName = userItem["name"],
-                    orders = db.userData.GetOrdersByOne(int.Parse(userItem["id"]))
+                    userName = userItem["name"]
                 };
 
                 return user;
@@ -56,8 +54,7 @@ namespace test.Mocks {
                 result.Add(new Book {
                     id = int.Parse(book["id"]),
                     bookName = book["name"],
-                    description = book["description"],
-                    orders = db.bookData.GetOrdersByOne(int.Parse(book["id"]))
+                    description = book["description"]
                 });
             }
             return result;
@@ -71,8 +68,7 @@ namespace test.Mocks {
                 result.Add(new Book {
                     id = int.Parse(book["id"]),
                     bookName = book["name"],
-                    description = book["description"],
-                    orders = db.bookData.GetOrdersByOne(int.Parse(book["id"]))
+                    description = book["description"]
                 });
             }
             return result;

@@ -43,8 +43,7 @@ namespace test.Mocks {
                 {
                     id = int.Parse(bookItem["id"]),
                     bookName = bookItem["name"],
-                    description = bookItem["description"],
-                    orders = db.bookData.GetOrdersByOne(int.Parse(bookItem["id"]))
+                    description = bookItem["description"]
                 };
 
                 return book;
