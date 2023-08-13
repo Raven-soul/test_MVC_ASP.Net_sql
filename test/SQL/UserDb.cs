@@ -55,8 +55,8 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM User WHERE id = '$userId’";
-                    selectCommand.Parameters.AddWithValue("$bookName", userId);
+                    selectCommand.CommandText = "SELECT * FROM User WHERE id = $userId";
+                    selectCommand.Parameters.AddWithValue("$userId", userId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
                     {
@@ -94,7 +94,6 @@ namespace test.SQL {
         public List<Dictionary<string, string>> GetTakenBooksByOne(int userId)
         {
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-            Dictionary<string, string> dict = new Dictionary<string, string>();
 
             using (SqliteConnection connection = new SqliteConnection(dbPathString))
             {
@@ -103,13 +102,14 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Book JOIN Order ON Book.id = Order.bookid AND Order.userid = '$userId’";
+                    selectCommand.CommandText = "SELECT Book.id, Book.name, Book.description FROM OrderData INNER JOIN Book ON Book.id = OrderData.bookid AND OrderData.userid = $userId";
                     selectCommand.Parameters.AddWithValue("$userId", userId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
                     {
                         while (dataBaseReader.Read())
                         {
+                            Dictionary<string, string> dict = new Dictionary<string, string>();
                             dict.Add("id", dataBaseReader.GetString(0));
                             dict.Add("name", dataBaseReader.GetString(1));
                             dict.Add("description", dataBaseReader.GetString(2));
@@ -127,7 +127,6 @@ namespace test.SQL {
         public List<Dictionary<string, string>> GetUntakenBooksByOne(int userId)
         {
             List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-            Dictionary<string, string> dict = new Dictionary<string, string>();
 
             using (SqliteConnection connection = new SqliteConnection(dbPathString))
             {
@@ -136,13 +135,14 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Book JOIN Order ON Book.id != Order.bookid AND Order.userid != '$userId’";
+                    selectCommand.CommandText = "SELECT * FROM Book JOIN OrderData ON Book.id != OrderData.bookid AND OrderData.userid != $userId";
                     selectCommand.Parameters.AddWithValue("$userId", userId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
                     {
                         while (dataBaseReader.Read())
                         {
+                            Dictionary<string, string> dict = new Dictionary<string, string>();
                             dict.Add("id", dataBaseReader.GetString(0));
                             dict.Add("name", dataBaseReader.GetString(1));
                             dict.Add("description", dataBaseReader.GetString(2));

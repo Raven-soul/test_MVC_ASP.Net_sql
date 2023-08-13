@@ -1,26 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using test.Models;
+using test.Interfaces;
+using test.ViewModels;
 
 namespace test.Controllers {
     public class HomeController : Controller {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger) {
-            _logger = logger;
+        private readonly IBooks _allBooks;
+        private readonly IUsers _allUsers;
+
+        public HomeController(IBooks iBooks, IUsers iUsers) {
+            _allBooks = iBooks;
+            _allUsers = iUsers;
         }
 
         public IActionResult Index() {
-            return View();
+            ViewBag.Title = "Список Книг";
+            ViewBag.BookButton = "choosen";
+            ViewBag.UserButton = "";
+
+            BookListViewModel data = new BookListViewModel();
+            data.allBooks = _allBooks.AllBooks;
+            return View(data);
         }
 
-        public IActionResult Privacy() {
-            return View();
+        public IActionResult Users() {
+            ViewBag.Title = "Список пользователей";
+            ViewBag.BookButton = "";
+            ViewBag.UserButton = "choosen";
+
+            UserViewModel data = new UserViewModel();
+            data.allUsers = _allUsers.AllUsers;
+            return View(data);
+        }
+
+        public IActionResult UserEdit(int id) {
+            ViewBag.Title = "Данные пользователя";
+            ViewBag.BookButton = "";
+            ViewBag.UserButton = "choosen";
+
+            UserViewModel data = new UserViewModel();
+            data.getUser = _allUsers.getUser(id);
+            data.takenBooks = _allUsers.getTakenBooks(id);
+            data.unTakenBooks = _allUsers.getUnTakenBooks(id);
+            return View(data);
         }
     }
 }

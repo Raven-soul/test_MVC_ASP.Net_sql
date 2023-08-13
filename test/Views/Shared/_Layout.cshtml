@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>@ViewBag.Title</title>
     @await Html.PartialAsync("CssPartial")
 </head>
 <body>
@@ -14,14 +14,14 @@
                 <div class="col-3 p-0 control-panel">
                     <div class="row-2">
                         <div class="col">
-                            <a href="#" class="main-button choosen">
+                            <a href="https://localhost:44336" class="main-button @ViewBag.BookButton">
                                 <div class="main-button-data">
                                     Книги
                                 </div>
                             </a>
                         </div>
                         <div class="col">
-                            <a href="#" class="main-button">
+                            <a href="https://localhost:44336/Home/Users" class="main-button @ViewBag.UserButton">
                                 <div class="main-button-data">
                                     Пользователи
                                 </div>
@@ -35,6 +35,9 @@
             </div>
         </div>
     </content>
-    <footer></footer>
+    <footer>
+        <script src="~/js/testSite.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    </footer>
 </body>
 </html>

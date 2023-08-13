@@ -1,0 +1,57 @@
+﻿<div class="row-2">
+    <div class="col">
+        <div class="row">
+            <div class="col-auto title-div">Имя пользователя:</div>
+            <div class="col">@Model.getUser.userName</div>
+        </div>
+    </div>
+    <div class="col title-div">Список выданных книг:</div>
+    <div class="col">
+        <div class="col db-container">
+            <ul>
+                @foreach (var book in Model.takenBooks) {
+                    <li>
+                        <div class="row px-3" style="justify-content: space-between;">
+                            <div class="col db-item-data"><span>@book.id  @book.bookName</span></div>
+                            <div class="col-auto"><input type="checkbox"></div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row buttons-row">
+            <div class="col-auto">
+                <button type="submit" class="submit-button">
+                    Вернуть книгу
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col title-div">Список книг, которые можно выдать:</div>
+    <div class="col">
+        <div class="col db-container">
+            <ul>
+                @foreach (var book in Model.unTakenBooks) {
+                    <li>
+                        <div class="row px-3" style="justify-content: space-between;">
+                            <div class="col db-item-data"><span>@book.id  @book.bookName</span></div>
+                            <div class="col-auto"><input type="checkbox" name="add-book" book-id="@book.id"></div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row buttons-row">
+            <div class="col-auto">
+                <button type="submit" class="submit-button" onclick="addBook(this)" token="add-book" user-id="@Model.getUser.id">
+                    Выдать книгу
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

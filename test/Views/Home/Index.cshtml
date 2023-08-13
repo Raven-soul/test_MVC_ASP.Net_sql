@@ -1,22 +1,13 @@
-﻿@using test.Models
-@using System.Text
-
-@model IEnumerable<Book>
-
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<form action="#" method="post">
+﻿<form action="#" method="post">
     <div class="row-2">
         <div class="col db-container">
             <ul>
                 @{ 
-                    foreach (var book in Model) { 
+                    foreach (var book in Model.allBooks) { 
                         <li>
-                            <a href="#" class="db-item">
+                            <a href="#" class="db-item" book-id="@book.id">
                                 <div class="col db-item-data">
-                                     @book.bookName
+                                    <span>@book.id  @book.bookName</span>
                                 </div>
                             </a>
                         </li>

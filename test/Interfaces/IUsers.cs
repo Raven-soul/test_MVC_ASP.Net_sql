@@ -10,7 +10,7 @@ namespace test.Interfaces {
         User getUser(int userId);
         IEnumerable<Book> getTakenBooks(int userId);
         IEnumerable<Book> getUnTakenBooks(int userId);
-        void delTakenBooks(int[] booksId, int userId);
-        void setUnTakenBooks(int[] booksId, int userId);
+        void delTakenBooks(int userId, int[] booksId);
+        void setUnTakenBooks(int userId, int[] booksId);
     }
 }
