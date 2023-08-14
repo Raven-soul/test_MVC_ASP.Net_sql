@@ -1,0 +1,27 @@
+﻿<div class="row-2">
+    <div class="col db-container">
+        <ul>
+            @{
+                foreach (var book in Model.allBooks) {
+                    <li>
+                        <a href="https://localhost:44336/Home/EditBook/@book.id" class="db-item" book-id="@book.id">
+                            <div class="col db-item-data">
+                                <span>@book.id  @book.bookName</span>
+                            </div>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="col">
+        <div class="row buttons-row">
+            <div class="col-auto">
+                <button type="submit" class="submit-button">
+                    Добавить книгу
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

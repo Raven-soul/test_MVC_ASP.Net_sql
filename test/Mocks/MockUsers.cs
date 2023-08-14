@@ -39,7 +39,7 @@ namespace test.Mocks {
             }
         }
 
-        public void delTakenBooks(int[] booksId, int userId) {
+        public void delTakenBooks(int userId, int[] booksId) {
             var db = new DataBase();
             foreach (var bookid in booksId) {
                 db.userData.DeleteBookOrderByOne(userId, bookid);
@@ -74,7 +74,7 @@ namespace test.Mocks {
             return result;
         }      
 
-        public void setUnTakenBooks(int[] booksId, int userId) {
+        public void setUnTakenBooks(int userId, int[] booksId) {
             var db = new DataBase();
             foreach (int bookId in booksId) {
                 db.userData.DeleteBookOrderByOne(userId, bookId);

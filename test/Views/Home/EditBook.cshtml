@@ -1,0 +1,21 @@
+﻿<div class="row-2">
+    <div class="col">
+        <div class="row">
+            <div class="col-auto title-div">Название книги:</div>
+            <div class="col">@Model.getBook.bookName</div>
+        </div>
+    </div>
+    <div class="col title-div">Описание книги:</div>
+    <div class="col">
+        <textarea name="Text1" cols="40" rows="5" class="w-100">@Model.getBook.description</textarea>
+    </div>
+    <div class="col">
+        <div class="row buttons-row">
+            <div class="col-auto">
+                <button type="submit" class="submit-button">
+                    Сохранить изменения
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

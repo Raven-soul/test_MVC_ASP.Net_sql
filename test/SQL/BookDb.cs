@@ -55,7 +55,7 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Book WHERE id = '$bookId’";
+                    selectCommand.CommandText = "SELECT * FROM Book WHERE id = $bookId";
                     selectCommand.Parameters.AddWithValue("$bookId", bookId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
