@@ -8,13 +8,13 @@ using test.Models;
 namespace test.SQL {
     public class DataBase {
         string dbPathString = "";
-        public BookDb bookData;
-        public UserDb userData;
+        public DbBook bookData;
+        public DbUser userData;
 
         public DataBase() {
             dbPathString = "Data Source=SQL/db_file.sqlite3";
-            bookData = new BookDb(dbPathString);
-            userData = new UserDb(dbPathString);
+            bookData = new DbBook(dbPathString);
+            userData = new DbUser(dbPathString);
         }       
     }
 }

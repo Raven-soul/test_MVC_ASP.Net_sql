@@ -6,10 +6,10 @@ using Microsoft.Data.Sqlite;
 using test.Models;
 
 namespace test.SQL {
-    public class UserDb {
+    public class DbUser {
         string dbPathString = "";
 
-        public UserDb(string dbPath) {
+        public DbUser(string dbPath) {
             dbPathString = dbPath;
         }
 
@@ -102,7 +102,7 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT Book.id, Book.name, Book.description FROM OrderData INNER JOIN Book ON Book.id = OrderData.bookid AND OrderData.userid = $userId";
+                    selectCommand.CommandText = "SELECT Book.id, Book.name, Book.description FROM OrderData INNER JOIN Book ON OrderData.bookid = Book.id AND OrderData.userid = $userId";
                     selectCommand.Parameters.AddWithValue("$userId", userId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())
@@ -135,7 +135,7 @@ namespace test.SQL {
                 {
                     var selectCommand = connection.CreateCommand();
                     selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT * FROM Book JOIN OrderData ON Book.id != OrderData.bookid AND OrderData.userid != $userId";
+                    selectCommand.CommandText = "SELECT DISTINCT Book.id, Book.name, Book.description FROM OrderData INNER JOIN Book ON OrderData.bookid != Book.id AND OrderData.userid != $userId";
                     selectCommand.Parameters.AddWithValue("$userId", userId);
 
                     using (var dataBaseReader = selectCommand.ExecuteReader())

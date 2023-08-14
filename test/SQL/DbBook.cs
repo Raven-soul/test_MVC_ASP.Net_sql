@@ -6,10 +6,10 @@ using Microsoft.Data.Sqlite;
 using test.Models;
 
 namespace test.SQL {
-    public class BookDb {
+    public class DbBook {
         string dbPathString = "";
 
-        public BookDb(string dbPath) {
+        public DbBook(string dbPath) {
             dbPathString = dbPath;
         }
 

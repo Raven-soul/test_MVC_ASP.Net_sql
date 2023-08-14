@@ -17,10 +17,10 @@ body {
 }
 
 ul {
-    list-style:none;
+    list-style: none;
     height: 100px;
-    overflow:hidden;
-    overflow-y:scroll;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 ul, li {
@@ -42,10 +42,10 @@ ul, li {
     text-decoration: none;
 }
 
-.main-button:hover {
-    color: black;
-    text-decoration: none;
-}
+    .main-button:hover {
+        color: black;
+        text-decoration: none;
+    }
 
 .main-button-data {
     width: 100%;
@@ -54,28 +54,28 @@ ul, li {
     border-top: 1px solid rebeccapurple;
 }
 
-.main-button-data:hover {
-    background-color: rgb(208, 204, 202);
-}
+    .main-button-data:hover {
+        background-color: rgb(208, 204, 202);
+    }
 
 .choosen div {
     background-color: rebeccapurple;
     color: white;
 }
 
-.choosen div:hover {
-    background-color: rebeccapurple;
-}
+    .choosen div:hover {
+        background-color: rebeccapurple;
+    }
 
 .db-item {
     color: black;
     text-decoration: none;
 }
 
-.db-item:hover {
-    color: white;
-    text-decoration: none;
-}
+    .db-item:hover {
+        color: white;
+        text-decoration: none;
+    }
 
 .db-item-data {
     padding: 2px;
@@ -83,9 +83,9 @@ ul, li {
     padding-right: 15px;
 }
 
-.db-item-data:hover {
-    background-color: blueviolet;
-}
+    .db-item-data:hover {
+        background-color: blueviolet;
+    }
 
 .submit-button {
     background-color: blueviolet;
@@ -97,10 +97,20 @@ ul, li {
     border: none;
 }
 
-.submit-button:active, .submit-button:focus {
-    border: none;
-}
+    .submit-button:active, .submit-button:focus {
+        border: none;
+    }
 
 .title-div {
     margin-bottom: 10px;
 }
+
+.a-button {
+    color: white;
+    text-decoration: none;
+}
+
+    .a-button:hover {
+        color: white;
+        text-decoration: none;
+    }
