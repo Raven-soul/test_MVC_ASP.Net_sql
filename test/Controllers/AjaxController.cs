@@ -18,6 +18,7 @@ namespace test.Controllers {
             _allUsers = iUsers;
         }
 
+        //функция добавляет пользователю список выданных книг
         [HttpPost]
         public void UserAddBook(int userId, string booksId) {
             string[] words = booksId.Split(',');
@@ -29,6 +30,7 @@ namespace test.Controllers {
             _allUsers.setUnTakenBooks(userId, listId);
         }
 
+        //функция убирает у пользователя список выданных книг
         [HttpPost]
         public void UserDeleteBook(int userId, string booksId) {
             string[] words = booksId.Split(',');
@@ -38,7 +40,12 @@ namespace test.Controllers {
                 listId[i] = int.Parse(words[i]);
             }
             _allUsers.delTakenBooks(userId, listId);
-            //return "" + booksId + " " + userId.ToString(); //["2","3"] 3
+        }
+
+        //функция изменяет описание книги
+        [HttpPost]
+        public void BookEditBook(int bookId, string description) {
+            _allBooks.editBook(bookId, description);
         }
     }
 }

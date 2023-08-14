@@ -7,12 +7,12 @@
     </div>
     <div class="col title-div">Описание книги:</div>
     <div class="col">
-        <textarea name="Text1" cols="40" rows="5" class="w-100">@Model.getBook.description</textarea>
+        <textarea name="Text1" cols="40" rows="5" class="w-100" id="description">@Model.getBook.description</textarea>
     </div>
     <div class="col">
         <div class="row buttons-row">
             <div class="col-auto">
-                <button type="submit" class="submit-button">
+                <button type="submit" class="submit-button" onclick="editBook(this)" book-id="@Model.getBook.id">
                     Сохранить изменения
                 </button>
             </div>

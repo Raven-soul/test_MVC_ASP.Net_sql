@@ -17,6 +17,15 @@ function ajaxDeleteRequest(userId, booksId) {
     });
 }
 
+function ajaxEditRequest(bookId, description) {
+    $.post('/Ajax/BookEditBook/', {
+        'bookId': bookId,
+        'description': description
+    }, function (data) {
+        location.reload();
+    });
+}
+
 function dataCollection(button) {
     var tokenClass = button.getAttribute("token");
     var rowList = document.querySelectorAll("input." + tokenClass);
@@ -43,4 +52,10 @@ function addBooks(button) {
 
 function delBooks(button) {
     ajaxDeleteRequest(button.getAttribute("user-id"), dataCollection(button));
+}
+
+function editBook(button) {
+    var bookId = button.getAttribute("book-id");
+    var bookDescription = document.getElementById("description").value;
+    ajaxEditRequest(bookId, bookDescription);
 }
