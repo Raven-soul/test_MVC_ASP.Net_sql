@@ -19,15 +19,26 @@ namespace test.Controllers {
         }
 
         [HttpPost]
-        public string UserAddBook(int userId, string booksId) {
+        public void UserAddBook(int userId, string booksId) {
             string[] words = booksId.Split(',');
             int[] listId = new int[words.Length];
 
-            for (int i = 0; i < booksId.Length; i++) {
+            for (int i = 0; i < words.Length; i++) {
                 listId[i] = int.Parse(words[i]);
             }
             _allUsers.setUnTakenBooks(userId, listId);
-            return "" + booksId + " " + userId.ToString(); //["2","3"] 3
+        }
+
+        [HttpPost]
+        public void UserDeleteBook(int userId, string booksId) {
+            string[] words = booksId.Split(',');
+            int[] listId = new int[words.Length];
+
+            for (int i = 0; i < words.Length; i++) {
+                listId[i] = int.Parse(words[i]);
+            }
+            _allUsers.delTakenBooks(userId, listId);
+            //return "" + booksId + " " + userId.ToString(); //["2","3"] 3
         }
     }
 }

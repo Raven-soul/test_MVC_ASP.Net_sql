@@ -63,7 +63,7 @@ namespace test.Mocks {
         public void setUnTakenBooks(int userId, int[] booksId) {
             var db = new DataBase();
             foreach (int bookId in booksId) {
-                db.userData.DeleteBookOrderByOne(userId, bookId);
+                db.userData.AddBookOnTakenListByOne(userId, bookId);
             }
         }
 

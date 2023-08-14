@@ -133,9 +133,9 @@ namespace test.SQL {
                 {
                     var deleteCommand = connection.CreateCommand();
                     deleteCommand.Transaction = transaction;
-                    deleteCommand.CommandText = "DELTE * FROM Order WHERE userid = '$userId’ AND bookid = '$bookId'";
+                    deleteCommand.CommandText = "DELETE FROM OrderData WHERE userid = $userId AND bookid = $bookId";
                     deleteCommand.Parameters.AddWithValue("$userId", userId);
-                    deleteCommand.Parameters.AddWithValue("$bookid", bookId);
+                    deleteCommand.Parameters.AddWithValue("$bookId", bookId);
                     deleteCommand.ExecuteNonQuery();
                     transaction.Commit();
                 }
@@ -152,7 +152,7 @@ namespace test.SQL {
                 {
                     var insertCommand = connection.CreateCommand();
                     insertCommand.Transaction = transaction;
-                    insertCommand.CommandText = "INSERT INTO Order (bookid, userid)  VALUES ( $bookid, $userId )";
+                    insertCommand.CommandText = "INSERT INTO OrderData (bookid, userid)  VALUES ( $bookid, $userId )";
                     insertCommand.Parameters.AddWithValue("$userId", userId);
                     insertCommand.Parameters.AddWithValue("$bookid", bookId);
                     insertCommand.ExecuteNonQuery();

@@ -1,15 +1,23 @@
 ﻿
 function ajaxTakeRequest(userId, booksId) {
-
     $.post('/Ajax/UserAddBook/', {
         'userId': userId,
         'booksId': booksId
     }, function (data) {
-        alert(data);
+        location.reload();
     });
 }
 
-function addBook(button) {
+function ajaxDeleteRequest(userId, booksId) {
+    $.post('/Ajax/UserDeleteBook/', {
+        'userId': userId,
+        'booksId': booksId
+    }, function (data) {
+        location.reload();
+    });
+}
+
+function dataCollection(button) {
     var tokenClass = button.getAttribute("token");
     var rowList = document.querySelectorAll("input." + tokenClass);
     var booksId = "";
@@ -23,10 +31,16 @@ function addBook(button) {
             else {
                 booksId = booksId + "," + cbItem.getAttribute("book-id");
             }
-            
+
         }
     })
-    
-    ajaxTakeRequest(button.getAttribute("user-id"), booksId);
-    alert("ready after");
+    return booksId;
+}
+
+function addBooks(button) {
+    ajaxTakeRequest(button.getAttribute("user-id"), dataCollection(button));
+}
+
+function delBooks(button) {
+    ajaxDeleteRequest(button.getAttribute("user-id"), dataCollection(button));
 }
