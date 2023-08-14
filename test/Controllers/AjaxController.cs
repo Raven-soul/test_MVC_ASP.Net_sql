@@ -18,20 +18,16 @@ namespace test.Controllers {
             _allUsers = iUsers;
         }
 
-        public IActionResult addBooks() {
-            bool isAjax = HttpContext.Request.Headers["X-Requested-With"] == "XMLHttpRequest";
-            if (isAjax)
-                return PartialView("_AjaxTestPartial");
-            return View();
+        [HttpPost]
+        public string UserAddBook(int userId, string booksId) {
+            string[] words = booksId.Split(',');
+            int[] listId = new int[words.Length];
 
-            //string[][] jsonArray = JsonConvert.DeserializeObject<string[][]>(data);
-            //int[] bookids = new int[jsonArray[0].Length];
-            //for (int i=0; i<jsonArray[0].Length; i++) {
-            //    bookids[i] = int.Parse(jsonArray[0][i]);
-            //}
-            //_allUsers.setUnTakenBooks(userId, bookids);
-            //return View();
+            for (int i = 0; i < booksId.Length; i++) {
+                listId[i] = int.Parse(words[i]);
+            }
+            _allUsers.setUnTakenBooks(userId, listId);
+            return "" + booksId + " " + userId.ToString(); //["2","3"] 3
         }
     }
-
 }

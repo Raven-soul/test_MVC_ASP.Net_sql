@@ -1,23 +1,32 @@
 ﻿
 function ajaxTakeRequest(userId, booksId) {
-    $.post('../../Ajax/addBooks/', {
+
+    $.post('/Ajax/UserAddBook/', {
         'userId': userId,
-        'booksId': JSON.stringify(booksId)
+        'booksId': booksId
     }, function (data) {
-        alert("ready");
+        alert(data);
     });
 }
 
 function addBook(button) {
-    var rowList = getElementsByName(button.getAttribute("token"));
-    var booksId = [];
-
+    var tokenClass = button.getAttribute("token");
+    var rowList = document.querySelectorAll("input." + tokenClass);
+    var booksId = "";
+    var k = 0;
     rowList.forEach((cbItem) => {
         if (cbItem.checked) {
-            booksId.push(cbItem.getAttribute("book-id"))
+            if (k == 0) {
+                booksId = booksId + cbItem.getAttribute("book-id");
+                k = k + 1;
+            }
+            else {
+                booksId = booksId + "," + cbItem.getAttribute("book-id");
+            }
+            
         }
     })
     
-    ajaxTakeRequest(button.getAttribute("user-id"), booksId)
-    
+    ajaxTakeRequest(button.getAttribute("user-id"), booksId);
+    alert("ready after");
 }

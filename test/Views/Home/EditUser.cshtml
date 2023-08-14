@@ -31,13 +31,13 @@
     </div>
     <div class="col title-div">Список книг, которые можно выдать:</div>
     <div class="col">
-        <div class="col db-container">
-            <ul>
+        <div class="col db-container unTaken-push">
+            <ul class="unTaken-pull">
                 @foreach (var book in Model.unTakenBooks) {
                     <li>
                         <div class="row px-3" style="justify-content: space-between;">
                             <div class="col db-item-data"><span>@book.id  @book.bookName</span></div>
-                            <div class="col-auto"><input type="checkbox" name="add-book" book-id="@book.id"></div>
+                            <div class="col-auto"><input type="checkbox" class="add-book" book-id="@book.id"></div>
                         </div>
                     </li>
                 }
@@ -47,7 +47,7 @@
     <div class="col">
         <div class="row buttons-row">
             <div class="col-auto">
-                <button type="submit" class="submit-button" onclick="addBook(this)" token="add-book" user-id="@Model.getUser.id">
+                <button type="submit" class="submit-button" onclick="addBook(this)" push-pull-name="unTaken" token="add-book" user-id="@Model.getUser.id">
                     Выдать книгу
                 </button>
             </div>
