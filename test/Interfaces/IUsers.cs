@@ -9,8 +9,8 @@ namespace test.Interfaces {
         IEnumerable<User> AllUsers { get; }
         User getUser(int userId);
         IEnumerable<Book> getTakenBooks(int userId);
-        IEnumerable<Book> getUnTakenBooks(int userId);
         void delTakenBooks(int userId, int[] booksId);
         void setUnTakenBooks(int userId, int[] booksId);
+        void addUser(string name);
     }
 }

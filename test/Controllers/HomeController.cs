@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using test.Interfaces;
+using test.Models;
 using test.ViewModels;
 
 namespace test.Controllers {
@@ -59,8 +60,27 @@ namespace test.Controllers {
             UserViewModel data = new UserViewModel();
             data.getUser = _allUsers.getUser(id);
             data.takenBooks = _allUsers.getTakenBooks(id);
-            data.unTakenBooks = _allUsers.getUnTakenBooks(id);
+            data.unTakenBooks = GetUnTakenBooks(_allBooks.AllBooks, _allUsers.getTakenBooks(id));
             return View(data);
+        }
+
+        //HELPERS
+        //Вспомогательная функция, которая получает список книг, которых нет на руках у пользователя
+        private IEnumerable<Book> GetUnTakenBooks(IEnumerable<Book> allBooks, IEnumerable<Book> takenBooks) {
+            List<Book> result = new List<Book>();
+            int[] takenIdList = new int[takenBooks.Count()];
+            int k = 0;
+            foreach (var book in takenBooks) {
+                takenIdList[k] = book.id;
+                k++;
+            }
+            foreach (var book in allBooks) {
+                if (takenIdList.Contains(book.id)) { }
+                else {
+                    result.Add(book);
+                }
+            }
+            return result;
         }
     }
 }

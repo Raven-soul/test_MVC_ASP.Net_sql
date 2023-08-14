@@ -34,5 +34,25 @@ namespace test.Controllers {
 
             return View();
         }
+
+        //функция обробатывет добавление новой книги
+        [HttpPost]
+        public IActionResult AddBook(AddBookFormBindingModel model) {
+            ViewBag.Title = "Добавление книги";
+            ViewBag.BookButton = "choosen";
+            ViewBag.UserButton = "";
+            _allBooks.addBook(model.name, model.description);
+            return View();
+        }
+
+        //функция обробатывет добавление нового пользователя
+        [HttpPost]
+        public IActionResult AddUser(AddUserFormBindingModel model) {
+            ViewBag.Title = "Добавление пользователя";
+            ViewBag.BookButton = "";
+            ViewBag.UserButton = "choosen";
+            _allUsers.addUser(model.name) ;
+            return View();
+        }
     }
 }

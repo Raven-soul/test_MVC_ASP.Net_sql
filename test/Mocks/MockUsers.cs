@@ -58,27 +58,18 @@ namespace test.Mocks {
                 });
             }
             return result;
-        }
-
-        public IEnumerable<Book> getUnTakenBooks(int userId) {
-            var db = new DataBase();
-            var bookList = db.userData.GetUntakenBooksByOne(userId);
-            List<Book> result = new List<Book>();
-            foreach (var book in bookList) {
-                result.Add(new Book {
-                    id = int.Parse(book["id"]),
-                    bookName = book["name"],
-                    description = book["description"]
-                });
-            }
-            return result;
-        }      
+        } 
 
         public void setUnTakenBooks(int userId, int[] booksId) {
             var db = new DataBase();
             foreach (int bookId in booksId) {
                 db.userData.DeleteBookOrderByOne(userId, bookId);
             }
+        }
+
+        public void addUser(string name) {
+            var db = new DataBase();
+            db.userData.SetOne(name);
         }
     }
 }

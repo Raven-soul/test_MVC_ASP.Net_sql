@@ -123,39 +123,6 @@ namespace test.SQL {
             return result;
         }
 
-        // Получить все записи на выдачу книг данному пользователю
-        public List<Dictionary<string, string>> GetUntakenBooksByOne(int userId)
-        {
-            List<Dictionary<string, string>> result = new List<Dictionary<string, string>>();
-
-            using (SqliteConnection connection = new SqliteConnection(dbPathString))
-            {
-                connection.Open();
-                using (var transaction = connection.BeginTransaction())
-                {
-                    var selectCommand = connection.CreateCommand();
-                    selectCommand.Transaction = transaction;
-                    selectCommand.CommandText = "SELECT DISTINCT Book.id, Book.name, Book.description FROM OrderData INNER JOIN Book ON OrderData.bookid != Book.id AND OrderData.userid != $userId";
-                    selectCommand.Parameters.AddWithValue("$userId", userId);
-
-                    using (var dataBaseReader = selectCommand.ExecuteReader())
-                    {
-                        while (dataBaseReader.Read())
-                        {
-                            Dictionary<string, string> dict = new Dictionary<string, string>();
-                            dict.Add("id", dataBaseReader.GetString(0));
-                            dict.Add("name", dataBaseReader.GetString(1));
-                            dict.Add("description", dataBaseReader.GetString(2));
-                            result.Add(dict);
-                        }
-                    }
-                    transaction.Commit();
-                }
-            }
-
-            return result;
-        }
-
         // Убрать запись о выданной книге
         public void DeleteBookOrderByOne(int userId, int bookId)
         {
